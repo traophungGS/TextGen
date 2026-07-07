@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invisible Text</title>
+
+<style>
+body{
+    margin:40px;
+    background:white;
+    color:white;
+    font-family:Georgia,serif;
+    font-size:20px;
+    line-height:1.8;
+}
+
+#text{
+    white-space:pre-wrap;
+    user-select:text;
+}
+</style>
+</head>
+<body>
+
+<div id="text"></div>
+
+<script>
+function generate(){
+
+    const letters="abcdefghijklmnopqrstuvwxyz";
+    let text="";
+
+    while(text.length<500){
+
+        // Generate a chunk of 2-8 random letters.
+        const length=Math.floor(Math.random()*7)+2;
+
+        for(let i=0;i<length && text.length<500;i++){
+            text+=letters[Math.floor(Math.random()*letters.length)];
+        }
+
+        // Add a space after each chunk (if there's room).
+        if(text.length<500){
+            text+=" ";
+        }
+    }
+
+    document.getElementById("text").textContent=text.trim();
+}
+
+generate();
+</script>
+
+</body>
+</html>
